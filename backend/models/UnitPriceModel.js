@@ -21,7 +21,27 @@ const UnitPrice = mongoose.Schema(
         Unit121to180:{
             type:Double,
             default:0.0
+        },
+
+        Fix0to60:{
+            type:Double,
+            default:0.0
         }, 
+
+        Fix60to90:{
+            type:Double,
+            default:0.0
+        }, 
+
+        Fix90to120:{
+            type:Double,
+            default:0.0
+        }, 
+        
+        Fix120to180:{
+            type:Double,
+            default:0.0
+        },
 
 
     },

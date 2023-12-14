@@ -11,7 +11,7 @@ const genarateToken = (id) =>{
 
 //registering user
 const registerUser = asyncHandler (async(req,res) =>{
-    const {name, Email, password,NIC,phone,ActiveStatus,Address} = req.body
+    const {name, Email, password,NIC,phone,ActiveStatus,Address,district,city,AccountID} = req.body
     //validation
     if(!name || !Email || !password){
         res.status(400)
@@ -27,6 +27,13 @@ const registerUser = asyncHandler (async(req,res) =>{
     // }
 
     //check user email alrady exist
+
+    const AccExist = await User.findOne({AccountID})
+    if(AccExist){
+        res.status(400)
+        throw new Error("That account alrady use")
+    }
+
     const userExist = await User.findOne({Email})
     if(userExist){
         res.status(400)
@@ -42,6 +49,9 @@ const registerUser = asyncHandler (async(req,res) =>{
             phone,
             NIC,
             Address,
+            city,
+            district,
+            AccountID,
             ActiveStatus
     })
 
@@ -156,6 +166,7 @@ const logout = asyncHandler (async(req,res)=>{
     return res.status(200).json({message: "Successfuly log out"});
 
 })
+
 
 
 

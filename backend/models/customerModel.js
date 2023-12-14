@@ -3,55 +3,68 @@ const bcrypt = require("bcryptjs")
 
 const UserSchema = mongoose.Schema(
     {
-        name:{
+        AccountID:{
             type:String,
-            required:[true,"Add name"]
+
+        },
+
+        name: {
+            type: String,
+            required: [true, "Add name"]
         }, 
 
-        Email:{
-            type:String,
-            required:[true,"Pleace enter e mail"],
-            unique:true,
-            trim:true,
-            match:[
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,"pleace enter valid email"
-
+        Email: {
+            type: String,
+            required: [true, "Please enter email"],
+            unique: true,
+            trim: true,
+            match: [
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                "Please enter a valid email"
             ]
-
         },
 
-        NIC:{
-            type:String,
-
+        NIC: {
+            type: String,
         },
 
-        password:{
-            type:String,
-            required:[true,"Pleace enter e password"],
-            minLength:[6,"enter 6 cgaractor"],
+        password: {
+            type: String,
+            required: [true, "Please enter a password"],
+            minLength: [6, "Enter at least 6 characters"],
         },
 
-        
-        phone:{
-            type:String,
-            default:"+94XXXXXXX"
+        phone: {
+            type: String,
+            default: "+94XXXXXXX"
         }, 
 
-        Address:{
-            address: { type: String},
-            city: {type: String},
-            distric: {type: String},
-            postalCode: {type: String},
+        Address: {
+            type: String,
+        },
+        
+        city: {
+            type: String,
         },
 
-        
-        
-        ActiveStatus:{
-            type:Boolean,
-            default:true,
+        district: {
+            type: String,
+        },
+
+        activeStatus: {
+            type: Boolean,
+            default: true,
+        },
+
+        lastMeter: {
+            type: Number, // Corrected from 'Intiger' to 'Number'
+            default: 0
+        },
+
+        amount: {
+            type: Number, // Corrected from 'Double' to 'Number'
+            default: 0.0,
         }
-
-
     },
 
     {
