@@ -55,7 +55,7 @@ const registerUser = asyncHandler (async(req,res) =>{
             ActiveStatus
     })
 
-     //Genarate token
+     //Genarate tokenghghghg
      const token = genarateToken(user._id)
 
      //sent HTTP-only cookie
