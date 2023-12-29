@@ -5,6 +5,9 @@ const asyncHandler = require("express-async-handler")
 
 const CalBill = asyncHandler(async(req,res) =>{
     const {meterRead,AccountID} = req.body
+    console.log(AccountID);
+    console.log(meterRead);
+
 
     const userExist = await User.findOne({AccountID})
     if(!userExist){
@@ -13,7 +16,7 @@ const CalBill = asyncHandler(async(req,res) =>{
     }
 
     const calUnit = meterRead - userExist.lastMeter
-    const price = 0.0
+    let price = 0.0
 
     if(calUnit > 180){
         price= 2360+(38*60)+(41*30)+(59*30)+(59*30)+(89*(calUnit-180))
@@ -39,22 +42,34 @@ const CalBill = asyncHandler(async(req,res) =>{
         price= 180+(12*calUnit)
     }
 
-    else{
-        price=-99
-    }
+    // else{
+    //     price=-99
+    // }
 
     const record = await monthRecod.create({
         AccountID,
         CusID:userExist._id,
         meterRead,
-        bill:price
+        bill:price,
     })
 
-    // const newAmount = userExist.amount + price
-    
+     const newAmount = userExist.amount + price
+
+     await User.updateOne(
+        { AccountID: { $eq: AccountID } },
+        {$set:{amount:newAmount, lastMeter:meterRead}}
+
+     )
+      res.json({ success: true, data: record });
 
 
 
 
 
 })
+
+
+module.exports = {
+    CalBill,
+    
+}

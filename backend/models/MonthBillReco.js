@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const MonthRecod= mongoose.Schema(
+const MonthRecord= mongoose.Schema(
     {
         AccountID:{
             type:String
