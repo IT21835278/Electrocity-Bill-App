@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser")
 
 const userRoutes = require("./routes/userRoutes");
 const Billrouter = require("./routes/Billrouter")
+const UnitPriceRoutes = require("./routes/UnitPriceRoutes")
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended:false}));
 //routes
 app.use("/api/users",userRoutes)
 app.use("/api/bill",Billrouter)
+app.use("/api/unit",UnitPriceRoutes)
 
 
 app.use(errorHandler);

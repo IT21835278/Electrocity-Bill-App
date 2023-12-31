@@ -19,6 +19,7 @@ const MonthRecord= mongoose.Schema(
 
         meterRead:{
             type:Number,
+            default:0,
             require:true,
         },
 

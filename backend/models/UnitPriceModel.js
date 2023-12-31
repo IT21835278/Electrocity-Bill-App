@@ -1,44 +1,71 @@
 const mongoose = require("mongoose");
+const { Decimal128 } = require("mongodb");
 
 const UnitPrice = mongoose.Schema(
     {
-        Unit0to60:{
-            type:Double,
+        Unit0to30:{
+            type:Decimal128,
             default:0.0
         }, 
 
+        Unit30to60:{
+            type:Decimal128,
+            default:0.0
+        },
+
+        Unit0to60:{
+            type:Decimal128,
+            default:0.0
+        },
+
         Unit60to90:{
-            type:Double,
+            type:Decimal128,
             default:0.0
         }, 
 
         Unit90to120:{
-            type:Double,
+            type:Decimal128,
             default:0.0
         }, 
 
         Unit121to180:{
-            type:Double,
+            type:Decimal128,
             default:0.0
         },
 
-        Fix0to60:{
-            type:Double,
+        UnitAbove180:{
+            type:Decimal128,
             default:0.0
         }, 
 
+        Fix0to30:{
+            type:Decimal128,
+            default:0.0
+        },
+
+        Fix30to60:{
+            type:Decimal128,
+            default:0.0
+        },
+ 
+
         Fix60to90:{
-            type:Double,
+            type:Decimal128,
             default:0.0
         }, 
 
         Fix90to120:{
-            type:Double,
+            type:Decimal128,
             default:0.0
         }, 
         
         Fix120to180:{
-            type:Double,
+            type:Decimal128,
+            default:0.0
+        },
+
+        FixAbove180:{
+            type:Decimal128,
             default:0.0
         },
 
@@ -54,6 +81,6 @@ const UnitPrice = mongoose.Schema(
 
 
 
-const unitPrice = mongoose.model("UnitPrice",Price)
+const unitPrice = mongoose.model("unitPrice",UnitPrice)
 
 module.exports = unitPrice;

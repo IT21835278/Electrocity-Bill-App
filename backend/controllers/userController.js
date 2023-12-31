@@ -168,6 +168,26 @@ const logout = asyncHandler (async(req,res)=>{
 })
 
 
+//All users details
+const getAllUser = asyncHandler(async(req, res) =>{
+    const user = await User.find()
+    res.status(200).json(user)
+})
+
+//get user by ID
+const getUserById = asyncHandler(async(req,res)=>{
+    try{
+        const userID = req.params.userId
+        const user = await User.findById(userID)
+
+        res.json(user)
+
+    }catch(error){
+        res.status(500).json({message:"Do not have any details"})
+    }
+})
+
+
 
 
 
@@ -175,5 +195,7 @@ module.exports = {
     registerUser,
     loginUser,
     logout,
+    getAllUser,
+    getUserById,
     
 }
