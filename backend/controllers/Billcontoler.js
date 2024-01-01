@@ -1,5 +1,5 @@
 const { error } = require("console");
-const User = require("../models/customerModel")
+const User = require("../models/customerModel");
 const monthRecod = require("../models/MonthBillReco")
 const asyncHandler = require("express-async-handler");
 const unitPrice = require("../models/UnitPriceModel");

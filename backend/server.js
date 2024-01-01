@@ -20,6 +20,8 @@ app.use(bodyParser.json());
 
 app.use(express.urlencoded({extended:false}));
 
+app.use(cors());
+
 //routes
 app.use("/api/users",userRoutes)
 app.use("/api/bill",Billrouter)
