@@ -8,6 +8,7 @@ import Login from './AuthPages/LoginPage/Login';
 //meter reading
 import SelectMeter from "./Pages/BillreaderPages/SelectMeter";
 import BillRead from "./Pages/BillreaderPages/BillRead";
+import ChangeUnitPrice from "./Pages/AdminPages/ChangeUnitPrice";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
           {/* bill reading */}
           <Route path="/Select-reding" element={<SelectMeter/>} />
           <Route path="/reading-meter/:userId" element={<BillRead/>}/>
+
+
+          {/* unit price */}
+          <Route path="/Update-unit-prices" element={<ChangeUnitPrice/>} />
           
         </Routes>
 

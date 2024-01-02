@@ -1,7 +1,6 @@
 const { error, log } = require("console");
 const asyncHandler = require("express-async-handler");
 const UnitPrice = require("../models/UnitPriceModel");
-const { Decimal128 } = require("mongodb");
 
 const createUnitPrice = asyncHandler(async (req, res) => {
     try {
@@ -51,7 +50,7 @@ const createUnitPrice = asyncHandler(async (req, res) => {
 
 
 const updateUnitPrice = asyncHandler(async(req,res)=>{
-    const units = await UnitPrice.findById({_id:`65917534d4842bb418db6c2c`})
+    const units = await UnitPrice.findById({_id:`65942fa018ec8cf9063e793b`})
     if(units){
         const {
             Unit0to30,
@@ -106,13 +105,13 @@ const updateUnitPrice = asyncHandler(async(req,res)=>{
     }
     else{
         res.status(404)
-        throw new Error("User Not Valid")
+        throw new Error("No Details")
 
         }
 })
 
 const  getUnitsPrice = asyncHandler(async(req,res)=>{
-    const units = await UnitPrice.find({_id:`65917534d4842bb418db6c2c`})
+    const units = await UnitPrice.findOne({_id:`65942fa018ec8cf9063e793b`})
 
     res.status(200).json(units)
 
