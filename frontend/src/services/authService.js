@@ -7,10 +7,12 @@ export const validateEmail = (Email) =>{
 }
 
 
-//register
+//login
 export const LoginUser = async(userData) =>{
     try{
-        const response = await axios.post(`${BACKEND_URL}/api/users/`,userData)
+        // console.log(userData)
+
+        const response = await axios.post(`${BACKEND_URL}/api/users/login`,userData)
         if(response==="OK"){
             toast.success("Login successfuly!...")
         }
@@ -18,6 +20,37 @@ export const LoginUser = async(userData) =>{
         const message = (error.response && error.response.data && error.response.data.message
         ) || error.message || error.toString()
         toast.error(message)
+    }
+}
+
+export const Logout = async() =>{
+    try{
+        const respone = await axios.get(`${BACKEND_URL}/api/users/`)
+        if(respone==="OK"){
+            console.log("log out user");
+            toast.success("Login logout...")
+        }
+    }catch(error){
+        const message = (error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString()
+            toast.error(message)
+    }
+}
+
+
+//register user
+export const registerUser = async(userData)=>{
+    try{
+        const  response = await axios.post(`${BACKEND_URL}/api/users/register`,userData,{ withCredentials: true })
+        console.log(userData);
+        if(response.statusText ==="OK"){
+            toast.success("Registration successfuly!...")
+            
+        }
+    }catch(error){
+        const message = (error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString()
+            toast.error(message)
     }
 }
 

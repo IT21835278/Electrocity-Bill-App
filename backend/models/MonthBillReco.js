@@ -40,6 +40,6 @@ const MonthRecord= mongoose.Schema(
 
 
 
-const monthRecod = mongoose.model("MonthRecod",MonthRecord)
+const monthRecod = mongoose.model("monthRecod",MonthRecord)
 
 module.exports = monthRecod;

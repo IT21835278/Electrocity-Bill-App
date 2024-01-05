@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllUser } from '../../services/meterReadService';
 import { Link } from 'react-router-dom';
+import { Logout } from '../../services/authService';
 
 const SelectMeter = () => {
   const [users, setUsers] = useState([]);
@@ -21,6 +22,7 @@ const SelectMeter = () => {
 
   return (
     <div>
+      <button onClick={Logout} className="--btn--btn-danger">Log out</button>
       {users ? (
         <table>
           <thead>

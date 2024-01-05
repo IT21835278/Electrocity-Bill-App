@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios"
 
 //pages
 import Login from './AuthPages/LoginPage/Login';
@@ -9,13 +10,17 @@ import Login from './AuthPages/LoginPage/Login';
 import SelectMeter from "./Pages/BillreaderPages/SelectMeter";
 import BillRead from "./Pages/BillreaderPages/BillRead";
 import ChangeUnitPrice from "./Pages/AdminPages/ChangeUnitPrice";
+import ViewMonthBill from "./Pages/CustomerPages/ViewMonthBill";
+
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
       <BrowserRouter>
       <ToastContainer />
         <Routes>
-          <Route path="/" element={<Login/>}></Route>
+          {/* auth path */}
+          <Route path="/login" element={<Login/>}></Route>
 
 
 
@@ -26,6 +31,9 @@ function App() {
 
           {/* unit price */}
           <Route path="/Update-unit-prices" element={<ChangeUnitPrice/>} />
+
+          {/* customer paths */}
+          <Route path="/view-bill" element={<ViewMonthBill/>} />
           
         </Routes>
 

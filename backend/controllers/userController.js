@@ -96,7 +96,10 @@ const registerUser = asyncHandler (async(req,res) =>{
 //login user
 const loginUser = asyncHandler(
     async(req,res) =>{
+        
         const{Email, password} = req.body
+        console.log(Email);
+        console.log(password);
         //validate
         if(!Email || !password){
             res.status(400)
@@ -125,9 +128,10 @@ const loginUser = asyncHandler(
             secure:true
 
         })
+        console.log(token);
 
         if(user &&  passwordIsCorrect){
-            const {_id, name, Email, password,NIC,phone,ActiveStatus,token,Address }=user
+            const {_id, name, Email, password,NIC,phone,ActiveStatus,Address }=user
             res.status(200).json(
             {
                 _id,
@@ -141,7 +145,9 @@ const loginUser = asyncHandler(
                 token,
                 
             }
+           
         )
+        console.log(token);
             
         }else{
             res.status(400)
@@ -163,8 +169,31 @@ const logout = asyncHandler (async(req,res)=>{
         secure:true
 
     })
+    console.log("log out");
     return res.status(200).json({message: "Successfuly log out"});
 
+})
+
+
+//login status
+const loginStates = asyncHandler(async(req, res) =>{
+    const token = req.cookies.token
+
+    if(!token){
+        return res.json(false)
+    }
+
+
+    //verify token
+    const verified = jwt.verify(token, process.env.JWT_SECRET)
+    if(verified){
+        return res.json(true)
+    }
+
+    return res.json(false)
+
+
+   
 })
 
 
@@ -188,6 +217,36 @@ const getUserById = asyncHandler(async(req,res)=>{
 })
 
 
+const getUser = asyncHandler(async(req,res)=>{
+    const user = await User.findById(req.user._id)
+
+    if(user){
+        const {_id, name, Email, password, phone, NIC, Address, ActiveStatus,AccountID,city,district,lastMeter,amount } =user
+        res.status(200).json(
+            {
+                _id,
+                name,
+                Email,
+                password,
+                phone,
+                NIC,
+                Address,
+                ActiveStatus,
+                AccountID,
+                city,
+                district,
+                lastMeter,
+                amount,
+
+            }
+        )
+    }else{
+        res.status(400)
+        throw new Error ("User not exist!")
+    }
+})
+
+
 
 
 
@@ -197,5 +256,6 @@ module.exports = {
     logout,
     getAllUser,
     getUserById,
+    getUser
     
 }

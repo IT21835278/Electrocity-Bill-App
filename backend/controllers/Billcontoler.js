@@ -71,6 +71,16 @@ const getBillByID = asyncHandler(async(req,res)=>{
 })
 
 
+const getLastMonthRecod = asyncHandler(async(req,res)=>{
+    try{
+        const record = await monthRecod.find({CusID: {$eq: req.user._id}}).sort({ date: -1 }).limit(1)
+        res.json(record)
+    }catch(error){
+        res.status(500).json({message:"Does not have details"})
+    }
+})
+
+
 
 
 
@@ -79,4 +89,5 @@ const getBillByID = asyncHandler(async(req,res)=>{
 module.exports = {
     CalBill,
     getBillByID,
+    getLastMonthRecod
 }
