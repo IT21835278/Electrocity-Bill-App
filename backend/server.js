@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser")
 const userRoutes = require("./routes/userRoutes");
 const Billrouter = require("./routes/Billrouter")
 const UnitPriceRoutes = require("./routes/UnitPriceRoutes")
+const PaymentRoute = require("./routes/PaymentRoute")
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(cors(
 app.use("/api/users",userRoutes)
 app.use("/api/bill",Billrouter)
 app.use("/api/unit",UnitPriceRoutes)
+app.use("/api/payment",PaymentRoute)
 
 
 app.use(errorHandler);

@@ -4,7 +4,7 @@ const router = express.Router();
 const protect = require("../middleWare/authMiddleware")
 
 router.post("/",CalBill);
-router.get("/bill-history/:userId",getBillByID)
+router.get("/bill-history",protect,getBillByID)
 router.get("/get-last-month-records",protect ,getLastMonthRecod)
 
 

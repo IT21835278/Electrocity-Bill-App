@@ -60,8 +60,7 @@ const CalBill = asyncHandler(async (req, res) => {
 //get bill history
 const getBillByID = asyncHandler(async(req,res)=>{
     try{
-        const userID = req.params.userId
-        const billReco = await monthRecod.find({CusID:userID})
+        const billReco = await monthRecod.find({CusID: {$eq: req.user._id}})
 
         res.json(billReco)
 

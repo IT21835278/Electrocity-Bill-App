@@ -1,6 +1,7 @@
 // Import necessary modules
 import React, { useEffect, useState } from 'react';
 import { getLastMonthRecords, getUserByToken } from '../../services/customerServices';
+import { Link } from 'react-router-dom';
 
 // Define the ViewMonthBill component
 const ViewMonthBill = () => {
@@ -38,6 +39,10 @@ const ViewMonthBill = () => {
           {/* Access the properties of the first item in the record array */}
           <p>This month fee: {record[0].bill}</p>
           <p>Billed date: {new Date(record[0].date).toLocaleDateString()}</p>
+          <br/>
+          <br/>
+          <br/>
+          <button><Link to={`/pay-bill/${user._id}`}>Pay Now</Link></button>
         </div>
       ) : (
         <p>Loading...</p>

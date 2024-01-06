@@ -11,6 +11,9 @@ import SelectMeter from "./Pages/BillreaderPages/SelectMeter";
 import BillRead from "./Pages/BillreaderPages/BillRead";
 import ChangeUnitPrice from "./Pages/AdminPages/ChangeUnitPrice";
 import ViewMonthBill from "./Pages/CustomerPages/ViewMonthBill";
+import Paybill from "./Pages/CustomerPages/Paybill";
+import ViewUnitRate from "./Pages/CustomerPages/viewUnitrates";
+import MeterHistory from "./Pages/CustomerPages/MeterHistory";
 
 axios.defaults.withCredentials = true;
 
@@ -27,13 +30,19 @@ function App() {
           {/* bill reading */}
           <Route path="/Select-reding" element={<SelectMeter/>} />
           <Route path="/reading-meter/:userId" element={<BillRead/>}/>
+          <Route path="/meter-history/:userId" element={<MeterHistory/> }  />
 
 
           {/* unit price */}
           <Route path="/Update-unit-prices" element={<ChangeUnitPrice/>} />
+          <Route path="/view-unit-rate" element={<ViewUnitRate/>} /> 
 
           {/* customer paths */}
           <Route path="/view-bill" element={<ViewMonthBill/>} />
+
+
+          {/* payment */}
+          <Route path="/pay-bill/:userId" element={<Paybill/>} />
           
         </Routes>
 

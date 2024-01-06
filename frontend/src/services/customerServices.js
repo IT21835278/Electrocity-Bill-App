@@ -27,3 +27,17 @@ export const getLastMonthRecords = async () =>{
             toast.error(message)
     }
 }
+
+
+
+//get meter read history
+export const MeterRecordHistory =async(userId) =>{
+    try{
+        const responce = await axios.get(`${BACKEND_URL}/api/bill/bill-history`)
+        return responce.data
+    }catch(error){
+        const message = (error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString()
+            toast.error(message)
+    }
+}
