@@ -4,6 +4,7 @@ import { getUserByID } from '../../services/meterReadService'
 import { toast } from 'react-toastify'
 import { PayBill } from '../../services/PaymentService'
 import Swal from 'sweetalert2'
+import CustomerNavBar from '../../Components/CustomerNavBar'
 
 const Paybill = () => {
   const {userId} = useParams()
@@ -64,6 +65,7 @@ const Paybill = () => {
     
   return (
     <div>
+      
     {user ? (
       <div>
         <fieldset>

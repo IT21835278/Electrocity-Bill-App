@@ -14,6 +14,7 @@ import ViewMonthBill from "./Pages/CustomerPages/ViewMonthBill";
 import Paybill from "./Pages/CustomerPages/Paybill";
 import ViewUnitRate from "./Pages/CustomerPages/viewUnitrates";
 import MeterHistory from "./Pages/CustomerPages/MeterHistory";
+import PaymentHistory from "./Pages/CustomerPages/PaymentHistory";
 
 axios.defaults.withCredentials = true;
 
@@ -30,7 +31,7 @@ function App() {
           {/* bill reading */}
           <Route path="/Select-reding" element={<SelectMeter/>} />
           <Route path="/reading-meter/:userId" element={<BillRead/>}/>
-          <Route path="/meter-history/:userId" element={<MeterHistory/> }  />
+          <Route path="/meter-history" element={<MeterHistory/> }  />
 
 
           {/* unit price */}
@@ -43,6 +44,7 @@ function App() {
 
           {/* payment */}
           <Route path="/pay-bill/:userId" element={<Paybill/>} />
+          <Route path="/payment-history" element={<PaymentHistory/>} />
           
         </Routes>
 

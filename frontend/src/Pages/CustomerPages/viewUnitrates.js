@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUnitPrice } from '../../services/UnitPriceService';
+import CustomerNavBar from '../../Components/CustomerNavBar';
 
 const ViewUnitRate = () => {
   const [units, setUnits] = useState(0);
@@ -20,7 +21,10 @@ const ViewUnitRate = () => {
 
   return (
     <div>
+      <CustomerNavBar/>
+      
       {units ? (
+        
         <table>
             <tr>
               <th><b>CONSUMER CATEGORY</b></th>

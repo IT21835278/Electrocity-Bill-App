@@ -40,7 +40,18 @@ const  PayBill =asyncHandler(async(req,res) => {
 
 })
 
+//get payment history
+const paymentHistory =asyncHandler(async(req,res) => {
+    try{
+        const records = await PaymentRecoed.find({CusID: {$eq: req.user._id}})
+        res.json(records)
+    }catch(error){
+        res.status(500).json({message:"Does not have any details"})
+    }
+})
+
 module.exports = {
-    PayBill
+    PayBill,
+    paymentHistory
 }
 

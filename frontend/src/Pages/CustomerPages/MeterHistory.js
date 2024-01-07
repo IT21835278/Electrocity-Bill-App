@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { MeterRecordHistory } from '../../services/customerServices';
+import CustomerNavBar from '../../Components/CustomerNavBar';
 
 const MeterHistory = () => {
   const [record, setRecord] = useState([]);
+
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
   useEffect(() => {
     async function fetchRecord() {
@@ -20,6 +24,7 @@ const MeterHistory = () => {
 
   return (
     <div>
+      <CustomerNavBar/>
       {record && Array.isArray(record) ? (
         <table>
           <thead>
@@ -32,7 +37,8 @@ const MeterHistory = () => {
           <tbody>
             {record.map((reco) => (
               <tr key={reco._id}>
-                <td>{reco.date}</td>
+                <td>{new Date(reco.date).toLocaleDateString(undefined, dateOptions)} </td>
+                {/* time-{new Date(reco.date).toLocaleTimeString(undefined, timeOptions)} */}
                 <td>{reco.meterRead}</td>
                 <td>{reco.bill}</td>
               </tr>

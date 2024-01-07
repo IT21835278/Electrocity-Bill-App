@@ -18,3 +18,14 @@ export const PayBill = async(payData)=>{
             toast.error(message)
     }
 }
+
+export const paymentHistory = async() =>{
+    try{
+        const responce = await axios.get(`${BACKEND_URL}/api/payment/`)
+        return responce.data
+    }catch(error){
+        const message = (error.response && error.response.data && error.response.data.message
+            ) || error.message || error.toString()
+            toast.error(message)
+    }
+}
