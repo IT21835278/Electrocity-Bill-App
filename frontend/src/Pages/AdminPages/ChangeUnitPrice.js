@@ -4,6 +4,8 @@ import { fetchUnitPrice, updateUnitPrice } from '../../services/UnitPriceService
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 const ChangeUnitPrice = () => {
   const navigate = useNavigate();
@@ -64,10 +66,10 @@ const ChangeUnitPrice = () => {
   };
 
   return (
-    <div>
+    <div style={{ paddingTop:'50px', paddingLeft:'40px', paddingRight:'40px' }}>
       {units ? (
         <form onSubmit={changePrice}>
-          <table>
+          <Table  bordered hover responsive variant="info">
             <thead>
               <tr>
                 <th><b>CONSUMER CATEGORY</b></th>
@@ -77,7 +79,7 @@ const ChangeUnitPrice = () => {
             </thead>
             <tbody>
               <tr>
-                <td>Consumption of 0-60 kWh per Month</td>
+              <td colSpan="3" className="text-left"><b>Consumption of 0-60 kWh per Month</b></td>
               </tr>
               <tr>
                 <td>Block 1: 0-30 kWh</td>
@@ -90,7 +92,7 @@ const ChangeUnitPrice = () => {
                 <td><input type='number' name='Fix30to60' value={unitData.Fix30to60} onChange={handleInputChange} /></td>
               </tr>
               <tr>
-                <td>Consumption above 60 kWh per Month</td>
+              <td colSpan="3" className="text-left"><b>Consumption above 60 kWh per Month</b></td>
               </tr>
               <tr>
                 <td>Block 1: 0-60 kWh</td>
@@ -118,9 +120,9 @@ const ChangeUnitPrice = () => {
                 <td><input type='number' name='FixAbove180' value={unitData.FixAbove180} onChange={handleInputChange} /></td>
               </tr>
             </tbody>
-          </table>
+            </Table>
 
-          <button type='submit'>Confirm</button>
+          <Button type='submit'variant="primary" size="lg">Conform</Button>
         </form>
       ) : (
         <p>Loading...</p>

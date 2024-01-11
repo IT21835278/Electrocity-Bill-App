@@ -1,59 +1,56 @@
-import React, { useEffect, useState } from 'react'
-import { paymentHistory } from '../../services/PaymentService'
-import CustomerNavBar from '../../Components/CustomerNavBar';
+import React, { useEffect, useState } from 'react';
+import { paymentHistory } from '../../services/PaymentService';
+import CustomerNavBar from '../../Components/NavBar/CustomerNavBar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const PaymentHistory = () => {
-    const [record,setRecord] = useState([])
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const timeOptions = { hour: '2-digit', minute: '2-digit' };
+  const [record, setRecord] = useState([]);
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const timeOptions = { hour: '2-digit', minute: '2-digit' };
 
-    useEffect(()=>{
-        async function fetchRecord(){
-            try{
-                const data = await paymentHistory();
-                console.log(data);
-                setRecord(data)
+  useEffect(() => {
+    async function fetchRecord() {
+      try {
+        const data = await paymentHistory();
+        console.log(data);
+        setRecord(data);
+      } catch (error) {
+        console.error('Error fetching records:', error);
+      }
+    }
+    fetchRecord();
+  }, []);
 
-            }catch(error){
-                console.error('Error fetching records:', error);
-            }
-        }
-        fetchRecord()
-    },[])
   return (
-    <div>
-      <CustomerNavBar/>
-        <div>
-      {record && Array.isArray(record) ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>Date</th>
-              <th>Full amount</th>
-              <th>Payment</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
+    <Container className="mt-4">
+      <div className="border rounded" style={{padding:'20px'}}>
+        <Row className="mb-4 text-black" style={{  fontWeight: 'bold' }}>
+          <Col md={4}>Transaction ID</Col>
+          <Col md={2}>Date & Time</Col>
+          <Col md={2}>Full amount</Col>
+          <Col md={2}>Payment</Col>
+          <Col md={2}>Amount</Col>
+        </Row>
+        {record && Array.isArray(record) ? (
+          <div>
             {record.map((reco) => (
-              <tr key={reco._id}>
-                <td>{reco.transactionID}</td>
-                <td>{new Date(reco.date).toLocaleDateString(undefined, dateOptions)} {new Date(reco.date).toLocaleTimeString(undefined, timeOptions)}</td>
-                <td>{reco.lastAmount}</td>
-                <td>{reco.payment}</td>
-                <td>{reco.amount}</td>
-              </tr>
+              <Row key={reco._id} className="mb-3 justify-content-between g-3 my-3">
+                <Col md={4}>{reco.transactionID}</Col>
+                <Col md={2}>{new Date(reco.date).toLocaleDateString(undefined, dateOptions)} {new Date(reco.date).toLocaleTimeString(undefined, timeOptions)}</Col>
+                <Col md={2}>Rs.{reco.lastAmount}</Col>
+                <Col md={2}>Rs.{reco.payment}</Col>
+                <Col md={2}>Rs.{reco.amount}</Col>
+              </Row>
             ))}
-          </tbody>
-        </table>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+    </Container>
+  );
+};
 
-    </div>
-  )
-}
-
-export default PaymentHistory
+export default PaymentHistory;

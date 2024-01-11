@@ -2,7 +2,7 @@ const { error, log } = require("console");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/customerModel");
 const PaymentRecoed = require("../models/paymentModel");
-const { v4: uuidv4 } = require('uuid');
+const { v1: uuidv1 } = require('uuid');
 
 
 const  PayBill =asyncHandler(async(req,res) => {
@@ -11,7 +11,7 @@ const  PayBill =asyncHandler(async(req,res) => {
         console.log(payment);
 
         const userExist = await User.findById(_id)
-        const uniqueId = uuidv4();
+        const uniqueId = uuidv1();
         const newAmount = userExist.amount - payment
         const AccountID = userExist.AccountID
         console.log(newAmount);
@@ -43,7 +43,7 @@ const  PayBill =asyncHandler(async(req,res) => {
 //get payment history
 const paymentHistory =asyncHandler(async(req,res) => {
     try{
-        const records = await PaymentRecoed.find({CusID: {$eq: req.user._id}})
+        const records = await PaymentRecoed.find({CusID: {$eq: req.user._id}}).sort({date:-1})
         res.json(records)
     }catch(error){
         res.status(500).json({message:"Does not have any details"})

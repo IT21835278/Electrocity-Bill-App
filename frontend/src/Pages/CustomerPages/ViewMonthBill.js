@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { getLastMonthRecords, getUserByToken } from '../../services/customerServices';
 import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 // Define the ViewMonthBill component
 const ViewMonthBill = () => {
@@ -30,24 +33,28 @@ const ViewMonthBill = () => {
 
   // Render the component
   return (
-    <div>
+    <Container className="mt-4">
       {user && record ? (
-        <div>
-          <p>Account ID: {user.AccountID}</p>
-          <p>Amount: {user.amount}</p>
-          <p>Last meter: {user.lastMeter}</p>
-          {/* Access the properties of the first item in the record array */}
-          <p>This month fee: {record[0].bill}</p>
-          <p>Billed date: {new Date(record[0].date).toLocaleDateString()}</p>
-          <br/>
-          <br/>
-          <br/>
-          <button><Link to={`/pay-bill/${user._id}`}>Pay Now</Link></button>
-        </div>
+        <Card style={{alignItems:'center'}}>
+          <Card.Body>
+            <Card.Title style={{ fontSize: '24px', fontWeight: 'bold' }}>View Monthly Bill</Card.Title>
+            <Card.Text>
+              <p>Account ID: {user.AccountID}</p>
+              <p>Amount: Rs.{user.amount}</p>
+              <p>Last meter: {user.lastMeter}</p>
+              {/* Access the properties of the first item in the record array */}
+              <p>This month fee: Rs.{record[0].bill}</p>
+              <p>Billed date: {new Date(record[0].date).toLocaleDateString()}</p>
+            </Card.Text>
+            <Link to={`/pay-bill/${user._id}`}>
+              <Button variant="primary" style={{paddingLeft:'50px',paddingRight:'50px'}}>Pay Now</Button>
+            </Link>
+          </Card.Body>
+        </Card>
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </Container>
   );
 };
 

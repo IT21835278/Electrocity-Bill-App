@@ -15,6 +15,7 @@ import Paybill from "./Pages/CustomerPages/Paybill";
 import ViewUnitRate from "./Pages/CustomerPages/viewUnitrates";
 import MeterHistory from "./Pages/CustomerPages/MeterHistory";
 import PaymentHistory from "./Pages/CustomerPages/PaymentHistory";
+import CusromerLayout from "./Components/Layout/CustomerLayout";
 
 axios.defaults.withCredentials = true;
 
@@ -24,27 +25,27 @@ function App() {
       <ToastContainer />
         <Routes>
           {/* auth path */}
-          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/" element={<Login/>}></Route>
 
 
 
           {/* bill reading */}
           <Route path="/Select-reding" element={<SelectMeter/>} />
           <Route path="/reading-meter/:userId" element={<BillRead/>}/>
-          <Route path="/meter-history" element={<MeterHistory/> }  />
+          <Route path="/meter-history" element={<CusromerLayout><MeterHistory/></CusromerLayout> }  />
 
 
           {/* unit price */}
           <Route path="/Update-unit-prices" element={<ChangeUnitPrice/>} />
-          <Route path="/view-unit-rate" element={<ViewUnitRate/>} /> 
+          <Route path="/view-unit-rate" element={<CusromerLayout><ViewUnitRate/></CusromerLayout> } /> 
 
           {/* customer paths */}
-          <Route path="/view-bill" element={<ViewMonthBill/>} />
+          <Route path="/view-bill" element={<CusromerLayout><ViewMonthBill/></CusromerLayout>} />
 
 
           {/* payment */}
-          <Route path="/pay-bill/:userId" element={<Paybill/>} />
-          <Route path="/payment-history" element={<PaymentHistory/>} />
+          <Route path="/pay-bill/:userId" element={<CusromerLayout><Paybill/></CusromerLayout>} />
+          <Route path="/payment-history" element={<CusromerLayout><PaymentHistory/></CusromerLayout>} />
           
         </Routes>
 

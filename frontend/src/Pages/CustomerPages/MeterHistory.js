@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MeterRecordHistory } from '../../services/customerServices';
-import CustomerNavBar from '../../Components/CustomerNavBar';
+import Table from 'react-bootstrap/Table';
 
 const MeterHistory = () => {
   const [record, setRecord] = useState([]);
@@ -23,10 +23,9 @@ const MeterHistory = () => {
   }, []);
 
   return (
-    <div>
-      <CustomerNavBar/>
+    <div style={{ paddingTop:'50px', paddingLeft:'40px', paddingRight:'40px' }}>
       {record && Array.isArray(record) ? (
-        <table>
+        <Table bordered hover responsive variant="info">
           <thead>
             <tr>
               <th>Date</th>
@@ -37,14 +36,13 @@ const MeterHistory = () => {
           <tbody>
             {record.map((reco) => (
               <tr key={reco._id}>
-                <td>{new Date(reco.date).toLocaleDateString(undefined, dateOptions)} </td>
-                {/* time-{new Date(reco.date).toLocaleTimeString(undefined, timeOptions)} */}
-                <td>{reco.meterRead}</td>
-                <td>{reco.bill}</td>
+                <td>{new Date(reco.date).toLocaleDateString(undefined, dateOptions)}</td>
+                <td className='text-end'>{reco.meterRead}</td>
+                <td className='text-end'>Rs.{reco.bill}</td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       ) : (
         <p>Loading...</p>
       )}

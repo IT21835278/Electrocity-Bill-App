@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllUser } from '../../services/meterReadService';
 import { Link } from 'react-router-dom';
-import { Logout } from '../../services/authService';
+import Table from 'react-bootstrap/Table';
 
 const SelectMeter = () => {
   const [users, setUsers] = useState([]);
@@ -18,20 +18,16 @@ const SelectMeter = () => {
     getUserData();
   }, []);
 
-  
-
   return (
-    <div>
-      <button onClick={Logout} className="--btn--btn-danger">Log out</button>
+    <div style={{ paddingTop:'50px', paddingLeft:'40px', paddingRight:'40px' }}>
       {users ? (
-        <table>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               <th>Account ID</th>
               <th>Address</th>
               <th>Previous Reading</th>
               <th>Select</th>
-
             </tr>
           </thead>
           <tbody>
@@ -41,12 +37,12 @@ const SelectMeter = () => {
                 <td>{user.Address}</td>
                 <td>{user.lastMeter}</td>
                 <td>
-                  <Link to={`/reading-meter/${user._id}`}>click</Link>
+                  <Link to={`/reading-meter/${user._id}`}>Click</Link>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       ) : (
         <p>Loading...</p>
       )}
