@@ -2,7 +2,7 @@ const { error } = require("console");
 const User = require("../models/customerModel");
 const monthRecod = require("../models/MonthBillReco")
 const asyncHandler = require("express-async-handler");
-const unitPrice = require("../models/UnitPriceModel");
+const UnitPrice = require("../models/UnitPriceModel");
 
 const CalBill = asyncHandler(async (req, res) => {
     try {
@@ -15,6 +15,8 @@ const CalBill = asyncHandler(async (req, res) => {
             res.status(400);
             throw new Error("The Account does not exist");
         }
+
+        const units = await UnitPrice.findById({_id:`65942fa018ec8cf9063e793b`})
 
         const calUnit = meterRead - userExist.lastMeter;
         let price = 0.0;
