@@ -22,17 +22,17 @@ const CalBill = asyncHandler(async (req, res) => {
         let price = 0.0;
 
         if (calUnit > 180) {
-            price = 2360 + 38 * 60 + 41 * 30 + 59 * 30 + 59 * 30 + 89 * (calUnit - 180);
+            price = units.FixAbove180 + units.Unit0to60 * 60 + units.Unit60to90 * 30 + units.Unit90to120 * 30 + units.Unit121to180 * 30 + units.UnitAbove180 * (calUnit - 180);
         } else if (calUnit > 120) {
-            price = 1770 + 38 * 60 + 41 * 30 + 59 * 30 + 59 * (calUnit - 120);
+            price = units.Fix120to180 + units.Unit0to60 * 60 + units.Unit60to90 * 30 + units.Unit90to120 * 30 + units.Unit121to180 * (calUnit - 120);
         } else if (calUnit > 90) {
-            price = 1180 + 38 * 60 + 41 * 30 + 59 * (calUnit - 90);
+            price = units.Fix90to120 + units.Unit0to60 * 60 + units.Unit60to90 * 30 + units.Unit90to120 * (calUnit - 90);
         } else if (calUnit > 60) {
-            price = 480 + 38 * 60 + 41 * 30 + 41 * (calUnit - 60);
+            price = units.Fix60to90 + units.Unit0to60 * 60 + units.Unit60to90 * (calUnit - 60);
         } else if (calUnit > 30) {
-            price = 360 + 12 * 30 + 30 * (calUnit - 30);
+            price = units.Fix30to60 + units.Unit0to30 * 30 + units.Unit30to60 * (calUnit - 30);
         } else if (calUnit > 0) {
-            price = 180 + 12 * calUnit;
+            price = units.Fix0to30 + units.Unit0to30 * calUnit;
         } else {
             price = -99;
         }
