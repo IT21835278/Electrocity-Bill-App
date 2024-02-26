@@ -71,6 +71,7 @@ const BillRead = () => {
                   placeholder="Enter new meter reading"
                   value={meterRead}
                   onChange={(e) => setMeterRead(e.target.value)}
+                  style={{width:'400px'}}
                   required
                   
                 />

@@ -16,6 +16,7 @@ import ViewUnitRate from "./Pages/CustomerPages/viewUnitrates";
 import MeterHistory from "./Pages/CustomerPages/MeterHistory";
 import PaymentHistory from "./Pages/CustomerPages/PaymentHistory";
 import CusromerLayout from "./Components/Layout/CustomerLayout";
+import AdminLayout from "./Components/Layout/AdminLayout";
 
 axios.defaults.withCredentials = true;
 
@@ -30,13 +31,13 @@ function App() {
 
 
           {/* bill reading */}
-          <Route path="/Select-reding" element={<SelectMeter/>} />
-          <Route path="/reading-meter/:userId" element={<BillRead/>}/>
+          <Route path="/Select-reding" element={<AdminLayout><SelectMeter/></AdminLayout>} />
+          <Route path="/reading-meter/:userId" element={<AdminLayout><BillRead/></AdminLayout>}/>
           <Route path="/meter-history" element={<CusromerLayout><MeterHistory/></CusromerLayout> }  />
 
 
           {/* unit price */}
-          <Route path="/Update-unit-prices" element={<ChangeUnitPrice/>} />
+          <Route path="/Update-unit-prices" element={<AdminLayout><ChangeUnitPrice/></AdminLayout>} />
           <Route path="/view-unit-rate" element={<CusromerLayout><ViewUnitRate/></CusromerLayout> } /> 
 
           {/* customer paths */}

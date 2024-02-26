@@ -66,19 +66,21 @@ const Paybill = () => {
             <div>
               <Card.Title className="mb-4">Meter Owner's Details</Card.Title>
               <Card.Text style={{paddingLeft:'50px'}}>
-                <p>Account ID: {user.AccountID}</p>
-                <p>Name: {user.name}</p>
-                <p>Full amount: {user.amount}</p>
+                <p><b>Account ID:</b> {user.AccountID}</p>
+                <p><b>Name:</b> {user.name}</p>
+                <p><b>Full amount:</b> {user.amount}</p>
               </Card.Text>
 
               <Form onSubmit={payBill} style={{paddingLeft:'50px'}}>
                 <Form.Group controlId="paymentValue">
-                  <Form.Label>Enter payment value</Form.Label>
+                  <Form.Label><b>Enter payment value</b></Form.Label>
                   <Form.Control
                     type="number"
                     placeholder="Enter payment value"
                     value={payment}
+                    style={{width:'200px'}}
                     onChange={(e) => setPay(e.target.value)}
+                    min={0}
                     required
                   />
                 </Form.Group>

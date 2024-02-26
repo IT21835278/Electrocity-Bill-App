@@ -52,7 +52,7 @@ const Login = () => {
       await dispatch(SET_LOGIN(true));
       // await dispatch(SET_NAME(data.name));
       if(data){
-        navigate('/view-bill');
+        navigate("/view-bill");
         setIsLoading(false);
       }
     } catch (error) {
@@ -67,8 +67,8 @@ const Login = () => {
         <Col xs={12} md={6} className="mt-auto">
           <Image src={loginIMg} rounded style={{ maxWidth: '100%', height: 'auto' }} />
         </Col>
-        <Col xs={12} md={6} className="mb-auto">
-          <Form onSubmit={login} className="border p-4 bg-light mt-4">
+        <Col xs={12} md={6} className="mb-auto p-5">
+          <Form onSubmit={login} className="border p-4 bg-light mt-4 m-5" style={{}}>
             {/* Add mt-4 to increase top margin */}
             <h1>Login</h1>
             <Form.Group controlId="formEmail">
@@ -80,7 +80,7 @@ const Login = () => {
               <Form.Control type="password" placeholder="Enter Password" name="password" value={password} onChange={handleInputChange} />
             </Form.Group>
             <div className="d-flex justify-content-center">
-              <Button variant="primary" type="submit" className="text-center">
+              <Button variant="primary" type="submit" className="text-center" style={{margin:'20px'}}>
                 Login
               </Button>
             </div>

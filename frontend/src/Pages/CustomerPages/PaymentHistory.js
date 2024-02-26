@@ -26,7 +26,7 @@ const PaymentHistory = () => {
   return (
     <Container className="mt-4">
       <div className="border rounded" style={{padding:'20px'}}>
-        <Row className="mb-4 text-black" style={{  fontWeight: 'bold' }}>
+        <Row className="mb-4 text-black bg-info" style={{  fontWeight: 'bold' }}>
           <Col md={4}>Transaction ID</Col>
           <Col md={2}>Date & Time</Col>
           <Col md={2}>Full amount</Col>
