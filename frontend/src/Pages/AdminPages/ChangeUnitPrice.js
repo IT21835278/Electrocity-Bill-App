@@ -19,6 +19,7 @@ const ChangeUnitPrice = () => {
     Unit121to180: 0,
     UnitAbove180: 0,
     Fix0to30: 0,
+    Fix0to60:0,
     Fix30to60: 0,
     Fix60to90: 0,
     Fix90to120: 0,
@@ -97,7 +98,7 @@ const ChangeUnitPrice = () => {
               <tr>
                 <td>Block 1: 0-60 kWh</td>
                 <td><input type='number' name='Unit0to60' value={unitData.Unit0to60} onChange={handleInputChange} /></td>
-                <td><input type='number' name='Fix0to30' value={unitData.Fix0to30} onChange={handleInputChange} /></td>
+                <td><input type='number' name='Fix0to60' value={unitData.Fix0to60} onChange={handleInputChange} /></td>
               </tr>
               <tr>
                 <td>Block 2: 61-90 kWh</td>

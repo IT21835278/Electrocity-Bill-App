@@ -12,6 +12,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Swal from 'sweetalert2';
 
 const initialState = {
   Email: '',
@@ -49,11 +50,18 @@ const Login = () => {
     setIsLoading(true);
     try {
       const data = await LoginUser(userData);
-      await dispatch(SET_LOGIN(true));
+      // await dispatch(SET_LOGIN(true));
       // await dispatch(SET_NAME(data.name));
-      if(data){
+      if(!data){
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Successful!',
+          text: 'Welcome',
+          showConfirmButton: false,
+          timer: 1500
+      }).then(() => {
         navigate("/view-bill");
-        setIsLoading(false);
+      });
       }
     } catch (error) {
       setIsLoading(false);

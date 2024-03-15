@@ -72,6 +72,7 @@ const BillRead = () => {
                   value={meterRead}
                   onChange={(e) => setMeterRead(e.target.value)}
                   style={{width:'400px'}}
+                  min={0}
                   required
                   
                 />
